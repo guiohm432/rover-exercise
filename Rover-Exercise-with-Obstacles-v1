@@ -1,0 +1,241 @@
+let rover1 = {
+  x: 0,
+  y: 0,
+  direction : "N",
+  travelLog : []
+};
+
+// Obstacles are symbolized by ["X","X"] //
+
+let grid = [
+  [[0,0],[1,0],[2,0],[3,0],[4,0],[5,0],[6,0],[7,0],[8,0],[9,0]],
+  [["X","X"],[1,1],[2,1],[3,1],[4,1],[5,1],[6,1],[7,1],["X","X"],[9,1]],
+  [[0,2],[1,2],[2,2],[3,2],["X","X"],[5,2],[6,2],[7,2],[8,2],[9,2]],
+  [[0,3],[1,3],[2,3],[3,3],[4,3],[5,3],[6,3],[7,3],[8,3],[9,3]],
+  [[0,4],[1,4],[2,4],[3,4],[4,4],[5,4],[6,4],[7,4],[8,4],[9,4]],
+  [[0,5],[1,5],[2,5],[3,5],[4,5],[5,5],[6,5],[7,5],[8,5],[9,5]],
+  [[0,6],[1,6],["X","X"],[3,6],[4,6],[5,6],[6,6],[7,6],[8,6],[9,6]],
+  [[0,7],[1,7],[2,7],[3,7],[4,7],[5,7],[6,7],["X","X"],[8,7],[9,7]],
+  [[0,8],[1,8],[2,8],[3,8],["X","X"],[5,8],[6,8],[7,8],[8,8],[9,8]],
+  [[0,9],[1,9],[2,9],[3,9],["X","X"],[5,9],[6,9],[7,9],[8,9],[9,9]],
+];
+
+function turnLeft(rover){
+  switch(rover.direction){
+    case "N":
+    rover.direction = "W";
+      break;
+    case "E":
+      rover.direction = "N";
+      break;
+    case "S":
+      rover.direction = "E";
+      break;
+    case "W":
+      rover.direction = "S";
+      break;
+  }
+  console.log("turnLeft was called!");
+  console.log(rover.direction);
+}
+
+function turnRight(rover){
+  switch(rover.direction){
+    case "N":
+    rover.direction = "E";
+      break;
+    case "E":
+      rover.direction = "S";
+      break;
+    case "S":
+      rover.direction = "W";
+      break;
+    case "W":
+      rover.direction = "N";
+      break;
+  }
+  console.log("turnRight was called!");
+   console.log(rover.direction);
+}
+
+function moveForward(rover){
+  switch(rover.direction){
+    
+    case "N":
+      if (rover.y>0){
+        if (grid[rover.y-1][rover.x][0] !== "X"){
+        rover.y --;
+      
+       } else {
+         console.log('OBSTACLE ! : Vous ne pouvez pas avancer dans cette direction!');
+        
+         }
+      } else {
+        console.log('Vous ne pouvez pas avancer dans cette direction sans sortir de la grille!');
+        
+        }
+      break;
+    
+    case "E":
+      
+      if (rover.x<9){
+        if (grid[rover.y][rover.x+1][0] !== "X"){
+        rover.x ++;
+        
+       } else {
+         console.log('OBSTACLE ! : Vous ne pouvez pas avancer dans cette direction!');
+         
+         }
+      
+      } else {
+        console.log('Vous ne pouvez pas avancer dans cette direction sans sortir de la grille!');
+        
+        }
+      break;
+
+    case "S":
+      
+      if (rover.y<9){
+        
+        if (grid[rover.y+1][rover.x][0] !== "X"){
+        rover.y ++;
+        
+       } else {
+         console.log('OBSTACLE ! : Vous ne pouvez pas avancer dans cette direction!');
+         
+         }
+      
+      } else {
+        console.log('Vous ne pouvez pas avancer dans cette direction sans sortir de la grille!');
+       
+        }
+      break;
+    
+    case "W":
+      
+      if (rover.x>0){
+       
+        if (grid[rover.y][rover.x-1][0] !== "X"){
+        rover.x --;
+        
+       } else {
+         console.log('OBSTACLE ! : Vous ne pouvez pas avancer dans cette direction!');
+         
+         }
+      } else {
+        console.log('Vous ne pouvez pas avancer dans cette direction sans sortir de la grille!');
+        
+        }
+      break;
+  }
+  console.log("moveForward was called");
+  console.log(`Rover's position is (${rover.x},${rover.y})`)
+}
+function moveBackward(rover){
+  switch(rover.direction){
+      
+    case "S":
+      if (rover.y>0){
+        if (grid[rover.y-1][rover.x][0] !== "X"){
+        rover.y --;
+        
+       } else {
+         console.log('OBSTACLE ! : Vous ne pouvez pas avancer dans cette direction!');
+         
+         }
+      } else {
+        console.log('Vous ne pouvez pas avancer dans cette direction sans sortir de la grille!');
+       
+        }
+      break;
+    
+    case "W":
+      
+      if (rover.x<9){
+        if (grid[rover.y][rover.x+1][0] !== "X"){
+        rover.x ++;
+        
+       } else {
+         console.log('OBSTACLE ! : Vous ne pouvez pas avancer dans cette direction!');
+         
+         }
+      
+      } else {
+        console.log('Vous ne pouvez pas avancer dans cette direction sans sortir de la grille!');
+        
+        }
+      break;
+
+    case "N":
+      
+      if (rover.y<9){
+        
+        if (grid[rover.y+1][rover.x][0] !== "X"){
+        rover.y ++;
+       
+       } else {
+         console.log('OBSTACLE ! : Vous ne pouvez pas avancer dans cette direction!');
+         
+         }
+      
+      } else {
+        console.log('Vous ne pouvez pas avancer dans cette direction sans sortir de la grille!');
+        
+        }
+      break;
+    
+    case "E":
+      
+      if (rover.x>0){
+       
+        if (grid[rover.y][rover.x-1][0] !== "X"){
+        rover.x --;
+        
+       } else {
+         console.log('OBSTACLE ! : Vous ne pouvez pas avancer dans cette direction!');
+         
+         }
+      } else {
+        console.log('Vous ne pouvez pas avancer dans cette direction sans sortir de la grille!');
+        
+        }
+      break;
+  }
+  console.log("moveBackward was called");
+  console.log(`Rover's position is (${rover.x},${rover.y})`)
+}
+function userCommands(command, rover){
+  for (let i=0; i<command.length; i++){
+    switch(command.charAt(i)){
+    
+    case "l":
+
+    turnLeft(rover);
+      break;
+
+    case "r":
+
+      turnRight(rover);
+      break;
+
+    case "f":
+
+      moveForward(rover);
+      rover.travelLog.push([rover.x,rover.y])
+      break;
+
+    case "b":
+
+      moveBackward(rover);
+      rover.travelLog.push([rover.x,rover.y])
+      break;
+
+    default:
+    
+      break;
+    
+    }
+   }
+  }
+
+
