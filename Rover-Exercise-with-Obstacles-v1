@@ -1,3 +1,5 @@
+// Rover exercise with bonuses from 1 to 4a //
+
 let rover1 = {
   x: 0,
   y: 0,
